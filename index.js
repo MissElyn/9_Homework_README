@@ -24,23 +24,23 @@ function promptUser() {
     },
     {
       type: "input",
-      name: "table of contents",
-      message: ""
+      name: "table",
+      message: "Do you have a Table of Contents?"
     },
     {
       type: "input",
       name: "installation",
-      message: ""
+      message: "How do I install necessary dependencies?"
     },
     {
       type: "input",
       name: "usage",
-      message: "Does your project have a specific use?"
+      message: "What is your project's specific use?"
     },
     {
       type: "input",
       name: "license",
-      message: ""
+      message: "Is there a license number?"
     },
     {
       type: "input",
@@ -50,46 +50,30 @@ function promptUser() {
     {
       type: "input",
       name: "test",
-      message: ""
+      message: "How do you test the program?"
     }
   ]);
 }
 
 function generater(answers) {
-  return `# Some
+  return `
   [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nelio/some)
   ​
-  ## Description
   ​
-  As a developer, I am trying to create a project that ${answers.description}
+  As a developer, I am trying to create a project that ${answers.description}.
   ​
-  ## Table of Contents 
-  ​
-  * [Installation](#installation)
+  To install necessary dependencies run ${answers.installation}.
+  
+  The Table of Contents is ​${answers.table}.
 
-  To install necessary dependencies
+  This program will be used to ${answers.usage}.
 
-  \`\`\`
-  ${answers.installation}
-  \`\`\`
-  ​
-  * [Usage](#usage)
-  ​\`\`\`
-  ${answers.usage}
-  \`\`\`
-  * [License](#license)
-  ​\`\`\`
-  ${answers.license}
-  \`\`\`
-  * [Contributing](#contributing)
-  ​\`\`\`
-  ${answers.contributing}
-  \`\`\`
-  * [Tests](#tests)
-  ​\`\`\`
-  ${answers.test}
-  \`\`\`
-  * [Questions](#questions)
+  License # ${answers.license}.
+
+  The contributers on this project were ${answers.contributing}.
+
+  To test the program ${answers.test}.
+
   ​
   <img src="${answers.data.avatar_url}" alt="avatar" style="border-radius: 16px" width="30" />
   ​
@@ -104,7 +88,7 @@ promptUser()
     const queryUrl = `https://api.github.com/users/${answers.github}`;
     axios.get(queryUrl)
     .then(function(response){
-      console.log(response)
+      //console.log(response)
 
 
       const readme = generater({...answers, ...response});
